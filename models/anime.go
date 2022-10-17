@@ -16,6 +16,10 @@ type Anime struct {
 
 type Animes []*Anime
 
+func NewAnime(emission bool, name string, wacthed bool, seasons int) (a *Anime) {
+	return &Anime{ Emision: emision, Name: name, Watched: wacthed, Seasons: seasons }
+}
+
 func (p *Anime) FromJSON(r io.Reader) error {
 	e := json.NewDecoder(r)
 	return e.Decode(p)
