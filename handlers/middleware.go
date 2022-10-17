@@ -9,7 +9,7 @@ import (
 
 type KeyAnime struct{}
 
-func (self Animes) MiddlewareValidateProduct(next http.Handler) http.Handler {
+func (self Animes) MiddlewareValidateAnime(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
 		anime := models.Anime{}
 

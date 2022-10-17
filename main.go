@@ -43,8 +43,8 @@ func main() {
 	updateRouter.HandleFunc("/{id}", handler.UpdateAnime)
 	deleteRouter.HandleFunc("/{id}", handler.DeleteAnime)
 
-	//postRouter.Use(handler.MiddlewareValidateProduct)
-	//updateRouter.Use(handler.MiddlewareValidateProduct)
+	//postRouter.Use(handler.MiddlewareValidateAnime)
+	//updateRouter.Use(handler.MiddlewareValidateAnime)
 
 	server := &http.Server{
 		Addr: ":8000",
