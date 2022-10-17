@@ -32,10 +32,16 @@ func main() {
 	sm := mux.NewRouter()
 
 	getRouter := sm.Methods(http.MethodGet).Subrouter()
-	getRouter.HandleFunc("/", handler.GetPersons)
-
+	getOneRouter := sm.Methods(http.MethodGet).Subrouter()
 	postRouter := sm.Methods(http.MethodPost).Subrouter()
-	postRouter.HandleFunc("/", handler.AddPerson)
+	updateRouter := sm.Methods(http.MethodPut).Subrouter()
+	deleteRouter := sm.Methods(http.MethodDelete).Subrouter()
+	
+	getRouter.HandleFunc("/", handler.GetAnimes)
+	getOneRouter.HandleFunc("/{id}", handler.GetAnime)
+	postRouter.HandleFunc("/", handler.PostAnime)
+	updateRouter.HandleFunc("/{id}", handler.UpdateAnime)
+	deleteRouter.HandleFunc("/{id}", handler.DeleteAnime)
 
 	server := &http.Server{
 		Addr: ":8000",
