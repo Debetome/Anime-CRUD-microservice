@@ -9,7 +9,8 @@ import (
 type Anime struct {	
 	ID 		  primitive.ObjectID  	`json:"id,omitempty"       bson:"_id,omitempty"`
 	Emision   bool	  				`json:"emision"            bson:"emision"`
-	Name 	  string  				`json:"name,omitempty"     bson:"name,omitempty"`		
+	Name 	  string  				`json:"name,omitempty"     bson:"name,omitempty"`
+	Studio 	  string  				`json:"studio,omitempty"   bson:"studio,omitempty"`
 	Watched   bool    				`json:"watched"   		   bson:"wacthed"`
 	Seasons   int 	  				`json:"seasons,omitempty"  bson:"seasons,omitempty"`
 }

@@ -20,6 +20,9 @@ func NewAnimes(database *database.Database, logger *log.Logger) *Animes {
 func (self *Animes) GetAnimes(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Add("Content-Type", "application/json")
 
+	recordsResponse := &models.Records{}
+	msg := "Anime records fetched successfuly"
+
 	animes, err := self.database.GetRecords()
 	if err != nil {
 		self.logger.Println(err)
@@ -28,7 +31,11 @@ func (self *Animes) GetAnimes(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = animes.ToJSON(rw)
+	recordsResponse.Msg = msg
+	recordsResponse.Status = "Success"
+	recordsResponse.Animes = animes
+
+	err = recordsResponse.ToJSON(rw)
 	if err != nil {
 		self.logger.Println(err)
 		self.logger.Println("Unable to parse response")
@@ -36,7 +43,7 @@ func (self *Animes) GetAnimes(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	self.logger.Println("Anime records fetched successfuly")
+	self.logger.Println(msg)
 }
 
 func (self *Animes) GetAnime(rw http.ResponseWriter, r *http.Request) {
@@ -44,6 +51,9 @@ func (self *Animes) GetAnime(rw http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
 	id := params["id"]
+
+	recordResponse := &models.Record{}
+	msg := "Anime record fetched successfuly"
 
 	var anime *models.Anime
 	anime, err := self.database.GetRecord(id)
@@ -54,7 +64,11 @@ func (self *Animes) GetAnime(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = anime.ToJSON(rw)
+	recordResponse.Msg = msg
+	recordResponse.Status = "Success"
+	recordResponse.Anime = anime
+
+	err = recordResponse.ToJSON(rw)
 	if err != nil {
 		self.logger.Println(err)
 		self.logger.Println("Unable to parse response")
@@ -62,7 +76,7 @@ func (self *Animes) GetAnime(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	self.logger.Printf("'%v' record fetched successfuly!", *anime)
+	self.logger.Printf("'%v' %s!", anime, msg)
 }
 
 func (self *Animes) PostAnime(rw http.ResponseWriter, r *http.Request) {
