@@ -6,7 +6,7 @@ import (
 )
 
 type Records struct {
-	Msg		string  `json:"msg,omitempty"`
+	Msg     string  `json:"msg,omitempty"`
 	Status	string 	`json:"status,omitempty"`
 	Animes	Animes	`json:"animes"`
 }
