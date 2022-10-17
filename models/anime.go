@@ -1,16 +1,17 @@
 package models
 
 import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"encoding/json"
 	"io"
 )
 
 type Anime struct {	
-	ID 		  string  `json: "id, omitempty"       bson: "_id, omitempty"`
-	Emision   bool	  `json: "emision, omitempty"  bson: "emision, omitempty"`
-	Name 	  string  `json: "name, omitempty"     bson: "name, omitempty"`		
-	Watched   bool    `json: "watched, omitempty"  bson: "wacthed, omitempty"`
-	Seasons   int 	  `json: "seasons, omitempty"  bson: "seasons, omitempty"`
+	ID 		  primitive.ObjectID  	`json: "id, omitempty"       bson: "_id, omitempty"`
+	Emision   bool	  				`json: "emision, omitempty"  bson: "emision, omitempty"`
+	Name 	  string  				`json: "name, omitempty"     bson: "name, omitempty"`		
+	Watched   bool    				`json: "watched, omitempty"  bson: "wacthed, omitempty"`
+	Seasons   int 	  				`json: "seasons, omitempty"  bson: "seasons, omitempty"`
 }
 
 type Animes []*Anime
