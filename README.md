@@ -8,21 +8,26 @@ This is a simple CRUD microservice which is a rest api written in Golang, Gorill
 
 
 ```Bash
-/getAnimes           It fetches all anime records from the database
+/getAnimes           
 ```
+It fetches all anime records from the database
 
 ```Bash
-/getAnimes/{id}      It fetches only one anime record
+/getAnimes/{id}      
 ```
+It fetches only one anime record
 
 ```Bash
-/newAnime            It creates a new anime record (it receives a json body)
+/newAnime
 ```
+It creates a new anime record (it receives a json body)
 
 ```Bash
-/updateAnime/{id}    It updates or edits a anime record (it receives a json body)
+/updateAnime/{id}
 ```
+It updates or edits a anime record (it receives a json body)
 
 ```Bash
-/deleteAnime/{id}    It deletes a anime record from the database
+/deleteAnime/{id}
 ```
+It deletes a anime record from the database
