@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"github.com/gorilla/mux"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"microservice/database"
 	"microservice/models"
 	"net/http"
@@ -14,18 +13,23 @@ type Animes struct {
 	logger		*log.Logger
 }
 
-func NewAnimes(database *database.Database, logger *log.Logger) *Person {
+func NewAnimes(database *database.Database, logger *log.Logger) *Animes {
 	return &Animes{database, logger}
 }
 
 func (self *Animes) GetAnimes(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Add("Content-Type", "application/json")
 
-	animes := self.database.GetRecords(rw)
-	err := animes.ToJSON(rw)
+	animes, err := self.database.GetRecords()
+	if err != nil {
+		http.Error(rw, "Unable to fetch anime records", http.StatusInternalServerError)
+		return
+	}
 
+	err = animes.ToJSON(rw)
 	if err != nil {
 		http.Error(rw, "Unable to marshal json", http.StatusInternalServerError)
+		return
 	}
 }
 
@@ -45,17 +49,15 @@ func (self *Animes) PostAnime(rw http.ResponseWriter, r *http.Request) {
 		http.Error(rw, "Unable to parse data arguments", http.StatusBadRequest)
 	}
 
-	self.database.AddRecord(&newAnime)
+	self.database.AddRecord(newAnime)
 	self.logger.Println("Anime record created succesfuly!")
 }
 
-func (self *Animes) UpdateAnime(rw http.ResponseWriter, r *http.Request) {+
+func (self *Animes) UpdateAnime(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Add("Content-Type", "application/json")
 
-	var anime Anime
-	params = mux.Vars(r)
-	id, err = primitive.ObjectIDFromHex(params["id"])
-
+	var _ models.Anime
+	_ = mux.Vars(r)
 
 }
 

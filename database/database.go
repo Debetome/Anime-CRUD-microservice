@@ -19,7 +19,7 @@ func NewDatabase(client *mongo.Client, logger *log.Logger) *Database {
 	return &Database{client, logger}
 }
 
-func (self *Database) GetRecords() (animeRecords []*models.Anime, err error){	
+func (self *Database) GetRecords() (animeRecords models.Animes, err error){	
 	collection := self.client.Database("AnimesDB").Collection("animeList")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	cursor, err := collection.Find(ctx, bson.M{})
@@ -50,14 +50,15 @@ func (self *Database) GetRecord(id string) (record *models.Anime, err error) {
 	collection := self.client.Database("AnimesDB").Collection("animeList")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 
-	_, err = primitive.ObjectIDFromHex(id)
+	var hexID primitive.ObjectID
+	hexID, err = primitive.ObjectIDFromHex(id)
 	if err != nil {
 		self.logger.Println(err)
 		self.logger.Println("Not valid Hex ID for getting record!")
 		return
 	}
 
-	err = collection.FindOne(ctx, models.Anime{ID: id}).Decode(&record)
+	err = collection.FindOne(ctx, bson.M{"_id": hexID}).Decode(&record)
 	if err != nil {
 		self.logger.Println(err)
 		self.logger.Printf("Record does not exists in this collection!")
