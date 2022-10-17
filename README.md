@@ -4,6 +4,36 @@ This is a simple CRUD microservice which is a rest api written in Golang, Gorill
 
 ![Real File](https://raw.githubusercontent.com/Debetome/Anime-CRUD-microservice/master/assets/records.png)
 
+## Setup
+
+### Clone repository
+
+```Bash
+git clone https://github.com/Debetome/Anime-CRUD-microservice.git
+```
+
+### Declare environment variables
+
+#### Windows
+
+```Batch
+set MONGO_HOST=localhost
+set MONGO_PORT=27017
+set MONGO_USER=user
+set MONGO_PASSWORD=password123
+```
+
+#### Linux
+
+```Bash
+export MONGO_HOST=localhost
+export MONGO_PORT=27017
+export MONGO_USER=user
+export MONGO_PASSWORD=password123
+```
+
+**NOTE**: The 'MONGO_PORT' variable is just optional, in case you have mongodb running on a different
+
 ## Endpoints
 
 
