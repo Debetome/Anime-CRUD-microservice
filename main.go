@@ -17,12 +17,13 @@ import (
 )
 
 func parse_connection_string() (connection string, err error) {
-	const BASE_STRING = "mongodb://%s:%s@%s:%s/?authSource=People"
+	const BASE_STRING = "mongodb://%s:%s@%s:%s/?authSource=%s"
 
 	user, ok_user := os.LookupEnv("MONGO_USER")
 	passw, ok_passw := os.LookupEnv("MONGO_PASSWORD")
 	host, ok_host := os.LookupEnv("MONGO_HOST")
 	port, ok_port := os.LookupEnv("MONGO_PORT")
+	dbname, ok_dbname := os.LookupEnv("MONGO_DBNAME")
 
 	if (!ok_port) { port = "27017" }
 	if (!ok_host) {
@@ -35,7 +36,9 @@ func parse_connection_string() (connection string, err error) {
 		return
 	}
 
-	connection = fmt.Sprintf(BASE_STRING, user, passw, host, port)
+	if (!ok_dbname) { dbname = "AnimeDB" }
+
+	connection = fmt.Sprintf(BASE_STRING, user, passw, host, port, dbname)
 	return
 }
 
