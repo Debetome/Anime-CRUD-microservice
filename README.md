@@ -36,7 +36,7 @@ export MONGO_DBNAME=dbname
 
 **NOTE**: The 'MONGO_PORT' variable is just optional, in case you have the mongodb service running on a different port
 
-### Run projct
+### Run project
 
 ```Bash
 go run main.go
