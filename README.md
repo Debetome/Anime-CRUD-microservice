@@ -1,14 +1,11 @@
 # Anime CRUD Microservice
 
----
-
 This is a simple CRUD microservice which is a rest api written in Golang, Gorilla as development framework and MongoDB as the database. It is deseigned for saving and manipulating anime records
 
 ![Real File](https://raw.githubusercontent.com/Debetome/Anime-CRUD-microservice/master/assets/records.png)
 
 ## Endpoints
 
----
 
 ```Bash
 /getAnimes           It fetches all anime records from the database
