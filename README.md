@@ -21,6 +21,7 @@ set MONGO_HOST=localhost
 set MONGO_PORT=27017
 set MONGO_USER=user
 set MONGO_PASSWORD=password123
+SET MONGO_DBNAME=dbname
 ```
 
 #### Linux
@@ -30,6 +31,7 @@ export MONGO_HOST=localhost
 export MONGO_PORT=27017
 export MONGO_USER=user
 export MONGO_PASSWORD=password123
+export MONGO_DBNAME=dbname
 ```
 
 **NOTE**: The 'MONGO_PORT' variable is just optional, in case you have the mongodb service running on a different port
