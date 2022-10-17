@@ -32,7 +32,7 @@ export MONGO_USER=user
 export MONGO_PASSWORD=password123
 ```
 
-**NOTE**: The 'MONGO_PORT' variable is just optional, in case you have mongodb running on a different
+**NOTE**: The 'MONGO_PORT' variable is just optional, in case you have the mongodb service running on a different port
 
 ## Endpoints
 
